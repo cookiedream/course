@@ -1,0 +1,342 @@
+{
+	"name": "geo-data-viewer",
+	"displayName": "Geo Data Viewer",
+	"description": "🗺️ Geo Data Viewer w/0 Py 🐍 || pyWidgets || pandas 🐼 ||  @reactjs  ⚛️ required to gen. some snazzy maps 🗺️ with keplerGL ...",
+	"version": "2.5.0",
+	"icon": "images/map.png",
+	"publisher": "RandomFractalsInc",
+	"author": "Taras Novak aka dataPixy :)",
+	"contributors": [
+		"Taras Novak"
+	],
+	"license": "Apache-2.0",
+	"readme": "README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RandomFractals/geo-data-viewer"
+	},
+	"bugs": "https://github.com/RandomFractals/geo-data-viewer/issues",
+	"homepage": "https://github.com/RandomFractals/geo-data-viewer/README.md",
+	"keywords": [
+		"geo data analytics",
+		"geo data viewer",
+		"transform geo data",
+		"map view 🗺️",
+		"FGB",
+		"GPX",
+		"IGC",
+		"KML",
+		"GML",
+		"WKT",
+		"kgl",
+		"keplerGL",
+		"deckGL",
+		"mapbox",
+		"geojson",
+		"topojson",
+		"flatgeobuf",
+		"shapefiles",
+		"GIS",
+		"GISPad 📘",
+		"map gist",
+		"preview",
+		"dataViz",
+		"dev tools"
+	],
+	"galleryBanner": {
+		"color": "#333",
+		"theme": "dark"
+	},
+	"engines": {
+		"vscode": "^1.60.0",
+		"node": ">=12.16.2"
+	},
+	"categories": [
+		"Data Science",
+		"Machine Learning",
+		"Programming Languages",
+		"Visualization"
+	],
+	"activationEvents": [
+		"onCommand:map.view",
+		"onCommand:map.view.url",
+		"onCommand:map.gallery",
+		"onWebviewPanel:map.view",
+		"onLanguage:csv",
+		"onLanguage:fgb",
+		"onLanguage:gpx",
+		"onLanguage:igc",
+		"onLanguage:json",
+		"onLanguage:geojson",
+		"onLanguage:topojson",
+		"onLanguage:kgl",
+		"onLanguage:kml",
+		"onLanguage:gml",
+		"onLanguage:shp",
+		"onLanguage:wkt"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "csv",
+				"extensions": [
+					".csv"
+				],
+				"aliases": [
+					"CSV"
+				]
+			},
+			{
+				"id": "fgb",
+				"extensions": [
+					".fgb"
+				],
+				"aliases": [
+					"FlatGeobuf"
+				]
+			},
+			{
+				"id": "gml",
+				"extensions": [
+					".gml"
+				],
+				"aliases": [
+					"GML"
+				]
+			},
+			{
+				"id": "gpx",
+				"extensions": [
+					".gpx"
+				],
+				"aliases": [
+					"GPX"
+				]
+			},
+			{
+				"id": "igc",
+				"extensions": [
+					".igc"
+				],
+				"aliases": [
+					"IGC"
+				]
+			},
+			{
+				"id": "json",
+				"extensions": [
+					".json",
+					".geojson",
+					".kgl",
+					".topojson"
+				],
+				"aliases": [
+					"JSON",
+					"GeoJSON",
+					"KeplerGL JSON",
+					"Topology JSON"
+				],
+				"configuration": "./json-language-configuration.json"
+			},
+			{
+				"id": "xml",
+				"extensions": [
+					".xml",
+					".gml",
+					".kml"
+				],
+				"aliases": [
+					"XML"
+				]
+			},
+			{
+				"id": "shp",
+				"extensions": [
+					".shp"
+				],
+				"aliases": [
+					"Shapefile"
+				]
+			},
+			{
+				"id": "wkt",
+				"extensions": [
+					".wkt"
+				],
+				"aliases": [
+					"Well-Known Text"
+				]
+			}
+		],
+		"jsonValidation": [
+			{
+				"fileMatch": "*.geojson",
+				"url": "https://geojson.org/schema/GeoJSON.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "map.view",
+				"title": "View Map",
+				"category": "Geo",
+				"icon": {
+					"light": "./images/map.svg",
+					"dark": "./images/map.svg"
+				}
+			},
+			{
+				"command": "map.view.url",
+				"title": "View Map from URL",
+				"category": "Geo"
+			},
+			{
+				"command": "map.gallery",
+				"title": "Map Gallery",
+				"category": "Geo"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "map.view.url",
+				"key": "ctrl+alt+u"
+			},
+			{
+				"command": "map.view",
+				"key": "ctrl+alt+m"
+			},
+			{
+				"command": "map.gallery",
+				"key": "ctrl+alt+g"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "map.view",
+					"when": "resourceFilename =~ /.*\\.(csv|fgb|igc|gml|gpx|json|geojson|kgl|kml|shp|topojson|wkt)/",
+					"group": "navigation"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "map.view",
+					"when": "resourceFilename =~ /.*(.fgb|.gpx|.geo.json|.geojson|.gml|.igc|.kgl.json|keplergl.json|keplergl_time.json|.kml|.map.json|.shp|.topo.json|.topojson|.wkt)/",
+					"group": "navigation"
+				}
+			],
+			"editor/title/context": [
+				{
+					"command": "map.view",
+					"when": "resourceFilename =~ /.*\\.(csv|fgb|igc|json|gml|gpx|geojson|kgl|kml|shp|topojson|wkt)/",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Geo Data Viewer",
+			"properties": {
+				"geo.data.viewer.theme": {
+					"type": "string",
+					"enum": [
+						"dark",
+						"light"
+					],
+					"default": "dark",
+					"description": "Map View UI Controls Theme"
+				},
+				"geo.data.viewer.map.style": {
+					"type": "string",
+					"enum": [
+						"dark",
+						"light",
+						"muted",
+						"muted_night",
+						"satellite",
+						"dark_streets",
+						"light_streets",
+						"outdoors"
+					],
+					"default": "dark",
+					"description": "Default Map Style"
+				},
+				"geo.data.viewer.create.geojson": {
+					"type": "boolean",
+					"default": true,
+					"description": "Creates .geojson data file for topojson, kml, gpx, fgb and shapefiles"
+				}
+			}
+		},
+		"gistpad.viewers": [
+			{
+				"filenames": [
+					".gpx",
+					".geo.json",
+					".geojson",
+					".igc",
+					".kgl.json",
+					"keplergl.json",
+					"keplergl_time.json",
+					".kml",
+					".map.json",
+					".shp",
+					".topo.json",
+					".topojson"
+				],
+				"command": "map.view"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p -w . --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "^14.14.21",
+		"@types/superagent": "^4.1.13",
+		"@types/topojson-client": "3.1.0",
+		"@types/vscode": "^1.60.0",
+		"@types/xmldom": "0.1.31",
+		"@typescript-eslint/eslint-plugin": "^4.31.1",
+		"@typescript-eslint/parser": "^4.31.1",
+		"eslint": "^7.32.0",
+		"glob": "^7.2.0",
+		"mocha": "^9.1.2",
+		"typescript": "^4.4.3",
+		"vscode-test": "^1.6.1",
+		"ts-loader": "^9.2.6",
+		"webpack": "^5.58.0",
+		"webpack-cli": "^4.9.0"
+	},
+	"dependencies": {
+		"@mapbox/togeojson": "^0.16.0",
+		"@types/ol": "^6.5.3",
+		"flatgeobuf": "3.17.4",
+		"ol": "^6.8.1",
+		"shpjs": "^4.0.2",
+		"superagent": "^6.1.0",
+		"topojson-client": "3.1.0",
+		"xmldom": "^0.6.0"
+	},
+	"__metadata": {
+		"id": "d1b606b4-7db2-45fb-b5b9-6637d0895a3c",
+		"publisherId": "c0235960-79cc-476e-be8e-a16e4fc76b9a",
+		"publisherDisplayName": "Random Fractals Inc.",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1658299692948
+	}
+}
